@@ -46,7 +46,7 @@
     "slugify": "^1.6.6",
     "smoothscroll-polyfill": "^0.4.4",
     "tesseract.js": "^6.0.1",
-    "typescript": "^5.8.2",
+    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
