@@ -81,6 +81,19 @@ const FAQ = () => {
         ))}
 
       </div>
+
+      <div className="text-center mt-16">
+        <p className="text-gray-500 mb-4">
+            Still have questions?
+        </p>
+
+        <a
+            href="/contact"
+            className="bg-primary text-white px-6 py-3 rounded-xl"
+        >
+            Contact Support
+        </a>
+        </div>
     </div>
   );
 };
