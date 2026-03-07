@@ -5,14 +5,14 @@ const LegalLayout = ({ title, children }) => {
   return (
     <>
       <Helmet>
-        <title>{title} | GraceTech Agency</title>
+        <title>{title} | QuickBite</title>
         <meta
           name="description"
-          content={`${title} for GraceTech Agency digital products and services.`}
+          content={`${title} | QuickBite`}
         />
       </Helmet>
 
-      <section className="min-h-screen bg-black text-white px-6 md:px-12 lg:px-24 py-20 mt-16">
+      <section className="min-h-fit bg-black text-white px-6 md:px-12 lg:px-24 py-20 mt-16">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold mb-10">
             {title}

@@ -2,16 +2,15 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import LegalLayout from "./LegalLayout";
 
-const Terms = () => {
+const CookiesPolicy = () => {
   return (
-    <LegalLayout title="Terms & Conditions">  
-      
-
+    <LegalLayout title="Cookies Policy">  
+     
       <p className="text-gray-500">
-        These terms apply to the usage of the QuickBite
-        UI template demonstration.
+        This demo template does not collect user data.
+        Cookies can be implemented when integrating backend services.
       </p>
-
+      
       <p className="mt-8 text-gray-600">
         Last updated: <strong>{new Date().getFullYear()}</strong>
       </p>
@@ -19,4 +18,4 @@ const Terms = () => {
   );
 };
 
-export default Terms;
+export default CookiesPolicy;

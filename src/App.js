@@ -13,6 +13,13 @@ import ScrollToHashElement from "./components/animations/ScrollToHashElement";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrderSuccess from "./pages/OrderSuccess";
 import CartPage from "./pages/CartPage";
+import NotFound from "./pages/NotFound";
+import FAQ from "./components/legal/FAQ";
+import TrackOrder from "./pages/TrackOrder";
+import Privacy from "./components/legal/Privacy";
+import Terms from "./components/legal/Terms";
+import CookiesPolicy from "./components/legal/Cookies";
+import Refund from "./components/legal/Refund";
 
 function App() {
 
@@ -56,7 +63,15 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/order-success" element={<OrderSuccess />} />
-          
+          <Route path="*" element={<NotFound />} />
+
+          {/* Legal routes */}
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/track-order" element={<TrackOrder />} />
+          <Route path="/privacy-policy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/refund" element={<Refund />} />
+          <Route path="/cookie-policy" element={<CookiesPolicy />} />
         </Routes>
         {/* {!isAdminPage && !isNewUI && !isUserDashboard && !isUserLogin && !isUserRegister && <Footer />} */}
             {/*<ScrollToTop />*/}

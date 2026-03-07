@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaMotorcycle, FaLeaf, FaShieldAlt, FaStar } from "react-icons/fa";
+import { FaMotorcycle, FaLeaf, FaShieldAlt, FaStar, FaCheckCircle } from "react-icons/fa";
 import FoodImg from "../../assets/food1.png"; // change to your food image
 
 const stats = [
@@ -97,11 +97,27 @@ const AboutPremium = () => {
               modern technology to give customers the best experience.
             </p>
 
+
             <div className="space-y-3">
-              <p>✔ Fresh meals prepared daily</p>
-              <p>✔ Fast and reliable delivery</p>
-              <p>✔ Affordable pricing</p>
-              <p>✔ Trusted by hundreds of customers</p>
+              <p className="flex items-center gap-2">
+                <FaCheckCircle className="text-green-500 dark:text-green-400" />
+                Fresh meals prepared daily
+              </p>
+
+              <p className="flex items-center gap-2">
+                <FaCheckCircle className="text-green-500 dark:text-green-400" />
+                Fast and reliable delivery
+              </p>
+
+              <p className="flex items-center gap-2">
+                <FaCheckCircle className="text-green-500 dark:text-green-400" />
+                Affordable pricing
+              </p>
+
+              <p className="flex items-center gap-2">
+                <FaCheckCircle className="text-green-500 dark:text-green-400" />
+                Trusted by hundreds of customers
+              </p>
             </div>
           </motion.div>
         </div>

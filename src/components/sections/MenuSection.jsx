@@ -26,7 +26,7 @@ const MenuSection = () => {
 
         {/* Header */}
         <div className="text-center mb-14">
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
             Popular Meals 🔥
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mt-3">

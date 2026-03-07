@@ -20,23 +20,23 @@ const BrowseMealsPreview = ({ onAddToCart }) => {
     <section id="menu" className="py-24 px-6">
       <div className="max-w-7xl mx-auto">
 
-        <div className="flex justify-between items-center mb-10">
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-bold">
-              Browse Meals
-            </h2>
-            <p className="mt-2 text-gray-500">
-              Discover delicious meals ready for fast delivery
-            </p>
-          </div>
-
-          <Link
-            to="/meals"
-            className="px-6 py-3 rounded-xl bg-primary text-white hover:scale-105 transition"
-          >
-            View Full Menu →
-          </Link>
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-10 gap-4">
+        <div>
+          <h2 className="text-2xl sm:text-3xl lg:text-3xl font-bold">
+            Browse Meals
+          </h2>
+          <p className="mt-2 text-gray-500">
+            Discover delicious meals ready for fast delivery
+          </p>
         </div>
+
+        <Link
+          to="/meals"
+          className="w-fit px-4 py-3 rounded-xl bg-primary text-white hover:scale-105 transition"
+        >
+          View Full Menu →
+        </Link>
+      </div>
 
         <div
           ref={scrollRef}

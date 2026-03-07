@@ -1,7 +1,7 @@
 import { useCart } from "../../../context/CartContext";
 import { FaPlus, FaMinus } from "react-icons/fa"
 import { flyToCart } from "../../../utils/flyToCart";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import './cart.css'
 
 const CartDrawer = ({ isOpen, onClose }) => {
@@ -42,7 +42,22 @@ const CartDrawer = ({ isOpen, onClose }) => {
         {/* Cart Items */}
         <div className="cart-items space-y-4">
           {Object.keys(cartItems).length === 0 && (
-            <p className="opacity-60">Cart is empty</p>
+            <div className="text-center py-20">
+              <h2 className="text-2xl font-bold mb-3">
+                Your cart is empty
+              </h2>
+            
+              <p className="text-gray-500 mb-6">
+                Looks like you haven't added any meals yet.
+              </p>
+            
+              <Link
+                to="/meals"
+                className="px-6 py-3 bg-primary text-white rounded-xl"
+              >
+                Browse Meals
+              </Link>
+            </div>
           )}
 
           {Object.values(cartItems).map((item) => (

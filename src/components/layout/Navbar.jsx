@@ -89,9 +89,9 @@ const Navbar = () => {
         </div>
 
         {/* Right-side CTA / User */}
-        <div className="topbar-right flex items-center gap-3 relative">
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* right side */}
-          <div>
+          <div className='hidden lgx:block'>
             <ThemeToggle variant="neon" />
           </div>
           <Link to='/order' className='hidden lgx:block'>
@@ -106,8 +106,7 @@ const Navbar = () => {
           {/* Mobile menu toggle */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className='lgx:hidden p-4 text-dark dark:text-light hover:text-white/80 transition-colors'
-            aria-label='menu'
+            className="lgx:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition"            aria-label='menu'
             aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? <X className='w-6 h-6' /> : <Menu className='w-6 h-6' />}
@@ -116,17 +115,19 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu */}
+     {/* Mobile menu */}
       <div
         className={`lgx:hidden transition-all duration-300 overflow-hidden ${
-          isMenuOpen ? 'max-h-[90vh] opacity-100' : 'max-h-0 opacity-0'
+          isMenuOpen ? "max-h-[90vh] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="bg-white/90 dark:bg-dark/95 backdrop-blur-lg border-t border-white/10 px-5 py-6 space-y-6">
-          {/* ───────── NAV LINKS ───────── */}
-          <div className="space-y-2">
+        <div className="bg-white dark:bg-dark border-t dark:border-white/10 px-5 py-6 space-y-6">
+
+          {/* NAV LINKS */}
+          <div className="flex flex-col gap-2">
             {NAV_LINKS.map((link) => {
               const isActive =
-                link.type === 'route'
+                link.type === "route"
                   ? location.pathname === link.path
                   : activeSection === link.id;
 
@@ -134,10 +135,10 @@ const Navbar = () => {
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link)}
-                  className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition ${
+                  className={`text-left px-4 py-3 rounded-lg font-medium transition ${
                     isActive
-                      ? 'text-dark dark:text-light bg-white/10'
-                      : 'text-dark/70 dark:text-light hover:text-white hover:bg-white/10'
+                      ? "bg-primary/10 text-primary"
+                      : "hover:bg-gray-100 dark:hover:bg-white/10"
                   }`}
                 >
                   {link.label}
@@ -146,11 +147,14 @@ const Navbar = () => {
             })}
           </div>
 
-          {/* ───────── PRIMARY CTA ───────── */}
-          <Link to='/order' className='hidden lgx:block'>
-            <button className="bg-gradient-to-r from-primary font-medium to-secondary text-white hadow-lg px-5 py-3 rounded-xl hover:scale-105 duration-300 flex items-center gap-2 transition">
-              Order
-              <FaCartShopping className='text-xl text-white drop-shadow-sm cursor-pointer' />          
+          <div>
+            <ThemeToggle variant="neon" />
+          </div>
+
+          {/* ORDER CTA */}
+          <Link to="/order">
+            <button className="w-full bg-gradient-to-r from-primary to-secondary text-white font-medium px-5 py-3 mt-6 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] transition">
+              Order Now
             </button>
           </Link>
 

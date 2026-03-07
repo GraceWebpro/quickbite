@@ -1,10 +1,17 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { FaWhatsapp, FaPhoneAlt, FaMapMarkerAlt, FaClock } from "react-icons/fa";
 
 const Contact = () => {
   return (
     <section className="min-h-screen pt-28 pb-20 bg-gray-50 dark:bg-gray-950 dark:text-white">
-
+      <Helmet>
+        <title>Contact | QuickBite</title>
+        <meta
+          name="description"
+          content="Get in touch with the QuickBite team. This page demonstrates a modern contact page layout for food ordering platforms."
+        />
+      </Helmet>
       <div className="container">
 
         {/* Page Header */}

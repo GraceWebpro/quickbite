@@ -12,7 +12,7 @@ import BrowseMealsPreview from '../components/sections/BrowseMealsPreview'
 import { useLocation } from "react-router-dom";
 import { scrollToSection } from "../components/hooks/useScrollSpy";
 import { mealsData } from "../data/meals";
-
+import { Helmet } from 'react-helmet'
 
 function Home() {
   const location = useLocation();
@@ -38,6 +38,18 @@ function Home() {
 
   return (
     <div>
+
+      <Helmet>
+        <title>QuickBite | Fast Food Ordering React Template</title>
+        <meta
+          name="description"
+          content="QuickBite is a modern React and Tailwind CSS food ordering UI template designed for restaurants, cloud kitchens, and delivery startups."
+        />
+        <meta property="og:title" content="QuickBite Food Ordering Template" />
+        <meta property="og:description" content="Modern React + Tailwind food ordering UI template." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/preview.png" />
+      </Helmet>
       <main>
         <Hero />
         <HowItWorks />

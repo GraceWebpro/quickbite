@@ -1,6 +1,8 @@
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { flyToCart } from "../utils/flyToCart";
+import { FaPlus, FaMinus } from "react-icons/fa"
+import { Helmet } from "react-helmet";
 
 const CartPage = () => {
   const {
@@ -16,7 +18,7 @@ const CartPage = () => {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="min-h-[80vh] flex flex-col items-center justify-center">
         <h2 className="text-2xl font-bold mb-4">Your Cart is Empty</h2>
         <Link
           to="/meals"
@@ -30,56 +32,80 @@ const CartPage = () => {
 
   return (
     <div className="container py-16 mt-10">
+      <Helmet>
+      <title>Your Cart | QuickBite</title>
+      <meta
+        name="description"
+        content="Review items in your cart before proceeding to checkout using the QuickBite template."
+      />
+      </Helmet>
       <h1 className="text-3xl font-bold mb-10">Shopping Cart</h1>
 
       <div className="grid lg:grid-cols-3 gap-10">
         {/* Items */}
         <div className="lg:col-span-2 space-y-6">
           {Object.values(items).map((item) => (
-            <div
+              <div
               key={item.id}
-              className="flex gap-6 p-6 rounded-xl border border-black/10 dark:border-white/20"
+              className="flex items-center gap-4 p-4 rounded-xl
+              bg-white/40 dark:bg-white/10"
             >
+              {/* Image */}
               <img
                 src={item.image}
                 alt={item.name}
-                className="w-24 h-24 object-cover rounded-lg"
+                className="w-16 h-16 rounded-lg object-cover"
               />
 
+              {/* Middle Section */}
               <div className="flex-1">
-                <h3 className="font-semibold text-lg">{item.name}</h3>
-                <p className="opacity-60">
+                <h4 className="font-semibold text-sm">
+                  {item.name}
+                </h4>
+
+                <p className="text-sm opacity-60">
                   ₦{item.price.toLocaleString()}
                 </p>
 
-                <div className="flex items-center gap-3 mt-4">
+                {/* Quantity Controls */}
+                <div className="flex items-center gap-2 mt-2 bg-gray-100 dark:bg-dark px-2 py-1 rounded-lg w-fit">
+                  
                   <button
-                    onClick={() => removeFromCart(item.id)}                    
-                    className="px-3 py-1 border border-black/10 dark:border-white/20 rounded"
+                    onClick={() => removeFromCart(item.id)}
+                    className="hover:scale-110 transition"
                   >
-                    -
+                    <FaMinus size={12} />
                   </button>
 
-                  <span>{item.qty}</span>
+                  <span className="text-sm font-medium">
+                    {item.qty}
+                  </span>
 
                   <button
                     onClick={(e) => {
-                        flyToCart?.(e);
-                        addToCart(item);
+                      flyToCart?.(e);
+                      addToCart(item);
                     }}
-                    className="px-3 py-1 border border-black/10 dark:border-white/20 rounded"
+                    className="hover:scale-110 transition"
                   >
-                    +
+                    <FaPlus size={12} />
                   </button>
                 </div>
               </div>
 
-              <button
-                onClick={() => removeFromCart(item.id)}
-                className="text-red-500"
-              >
-                Remove
-              </button>
+              {/* Right Side */}
+              <div className="text-right">
+                <p className="font-semibold">
+                  ₦{(item.price * item.qty).toLocaleString()}
+                </p>
+
+                <button
+                  onClick={() => removeFromCart(item.id)}
+                  className="text-red-500 text-xs mt-2 hover:underline"
+                >
+                  Remove
+                </button>
+              </div>
             </div>
           ))}
         </div>

@@ -61,7 +61,7 @@ const Hero = () => {
                     Delivered <span className="text-primary">Fast & Fresh</span>
                 </h1>
 
-                <div className="flex items-center gap-1 text-yellow-500 text-sm">
+                <div className="flex items-center justify-center gap-1 text-yellow-500 text-sm">
                     <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                     <span className="text-gray-700 dark:text-gray-300 ml-2 text-xs">
                         Rated 4.9 by happy customers

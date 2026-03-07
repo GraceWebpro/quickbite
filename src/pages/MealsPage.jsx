@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { mealsData } from "../data/meals";
 import MealCard from "../components/ui/MealCard";
+import { Helmet } from "react-helmet";
 
 const categories = ["all", "rice", "fastfood", "pizza", "chicken", "dessert"];
 
@@ -52,6 +53,13 @@ const MealsPage = ({ onAddToCart }) => {
 
   return (
     <section className="py-24 px-6">
+      <Helmet>
+        <title>Browse Meals | QuickBite</title>
+        <meta
+          name="description"
+          content="Explore delicious meals available for fast delivery with the QuickBite food ordering template."
+        />
+      </Helmet>
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
@@ -79,25 +87,25 @@ const MealsPage = ({ onAddToCart }) => {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-12">
 
           {/* Categories */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex overflow-x-auto gap-3 pb-2 scrollbar-hide no-scrollbar">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActive(cat)}
-                className={`px-5 py-2 rounded-full capitalize transition
-                  ${
-                    active === cat
-                      ? "bg-primary text-white shadow-lg"
-                      : "bg-gray-100 dark:bg-white/10 hover:scale-105"
-                  }`}
+                className={`px-5 py-2 rounded-full capitalize whitespace-nowrap transition
+                ${
+                  active === cat
+                    ? "bg-primary text-white shadow-lg"
+                    : "bg-gray-100 dark:bg-white/10"
+                }`}
               >
                 {cat}
               </button>
             ))}
           </div>
 
-          {/* Sort Dropdown */}
-          <div>
+          {/* Sort */}
+          <div className="w-full sm:w-auto sm:self-end relative">
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}
@@ -105,6 +113,7 @@ const MealsPage = ({ onAddToCart }) => {
                 px-5 py-3 rounded-xl
                 bg-gray-100 dark:bg-white/10
                 border border-white/20
+                apearance-auto
                 focus:outline-none focus:ring-2 focus:ring-primary
               "
             >
@@ -121,6 +130,7 @@ const MealsPage = ({ onAddToCart }) => {
         {/* Grid */}
         
         {loading ? (
+          <div>
           <div className="grid md:grid-cols-4 gap-6">
             {Array.from({ length: 8 }).map((_, i) => (
               <div
@@ -129,11 +139,17 @@ const MealsPage = ({ onAddToCart }) => {
               />
             ))}
           </div>
+          <div className="animate-pulse">
+  <div className="h-40 bg-gray-200 rounded-xl mb-4"></div>
+  <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+  <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+</div>
+          </div>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {currentMeals.map((meal) => (
               <div key={meal.id} 
-              className="group min-w-[280px] rounded-2xl overflow-hidden bg-white/60 dark:bg-white/5 backdrop-blur-xl border border-gray/40 dark:border-white/20 hover:shadow-2xl transition" 
+              className="group min-w-[280px] rounded-2xl bg-white/60 dark:bg-white/5 backdrop-blur-xl border border-gray/40 dark:border-white/20 hover:shadow-2xl transition" 
             > 
             <MealCard
               meal={meal}

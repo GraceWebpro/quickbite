@@ -1,5 +1,6 @@
 import React from "react";
 import { FaWhatsapp, FaClock, FaMotorcycle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const FinalCTA = () => {
   return (
@@ -16,7 +17,7 @@ const FinalCTA = () => {
           className="
           max-w-5xl mx-auto
           rounded-3xl
-          bg-white/70 dark:bg-white/10
+          bg-white/70 dark:bg-black/50
           backdrop-blur-xl
           border border-white/20
           shadow-2xl
@@ -48,12 +49,12 @@ const FinalCTA = () => {
 
             {/* WhatsApp Order */}
             <a
-              href="https://wa.me/234XXXXXXXXXX?text=Hello%20QuickBite,%20I%20want%20to%20order"
+              href="https://wa.me/2347043421913?text=Hello%20QuickBite,%20I%20want%20to%20order"
               target="_blank"
               rel="noreferrer"
-              className="
+              className=" w-fit
                 flex items-center justify-center gap-3
-                px-8 py-4 rounded-xl
+                px-6 py-4 rounded-xl
                 text-white font-semibold
                 bg-gradient-to-r from-green-500 to-green-600
                 shadow-lg hover:scale-105 transition
@@ -64,17 +65,17 @@ const FinalCTA = () => {
             </a>
 
             {/* Browse Menu */}
-            <a
-              href="#menu"
+            <Link
+              to="/meals"
               className="
-                px-8 py-4 rounded-xl font-semibold
+                px-6 py-4 rounded-xl font-semibold
                 border border-primary text-primary
                 hover:bg-primary hover:text-white
                 transition
               "
             >
               Browse Menu
-            </a>
+            </Link>
           </div>
 
           {/* Trust Info */}
