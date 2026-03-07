@@ -40,7 +40,7 @@ function Home() {
     <div>
 
       <Helmet>
-        <title>QuickBite | Fast Food Ordering React Template</title>
+        <title>QuickBite | Fast Food Ordering React Template by GraceTech</title>
         <meta
           name="description"
           content="QuickBite is a modern React and Tailwind CSS food ordering UI template designed for restaurants, cloud kitchens, and delivery startups."

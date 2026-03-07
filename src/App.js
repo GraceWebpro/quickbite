@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import './App.css';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import ScrollToTop from "./components/animations/ScrollToTop";
 import Navbar from "./components/layout/Navbar";

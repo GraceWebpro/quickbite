@@ -4,6 +4,14 @@ QuickBite is a fully responsive food ordering marketplace built with React and T
 
 ---
 
+Tech Stack
+• React
+• Tailwind CSS
+• React Router
+
+---
+
+
 ## 🚀 Features
 
 - Modern responsive UI
@@ -16,6 +24,8 @@ QuickBite is a fully responsive food ordering marketplace built with React and T
 - Mobile optimized
 - Clean folder structure
 - Easy customization
+- Dark mode
+- WhatsApp order integration
 
 ---
 
