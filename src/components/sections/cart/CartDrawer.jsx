@@ -213,101 +213,115 @@ const CartDrawer = ({ isOpen, onClose }) => {
       </div>
 
       {showCheckout && (
-      <div className="fixed inset-0 z-[200] flex items-center justify-center">
-        
-        {/* Overlay */}
-        <div
-          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-          onClick={() => setShowCheckout(false)}
+  <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center">
+    
+    {/* Overlay */}
+    <div
+      className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+      onClick={() => setShowCheckout(false)}
+    />
+
+    {/* Modal */}
+    <div
+      className="
+        relative w-full sm:max-w-md
+        bg-white dark:bg-dark
+        rounded-t-3xl sm:rounded-2xl
+        p-5 sm:p-6
+        shadow-2xl
+        animate-slideUp
+        max-h-[90vh] overflow-y-auto
+      "
+    >
+      {/* Drag handle (mobile feel) */}
+      <div className="w-10 h-1.5 bg-gray-300 rounded-full mx-auto mb-4 sm:hidden" />
+
+      <h2 className="text-lg sm:text-xl font-bold mb-4 text-center sm:text-left">
+        Complete Your Order
+      </h2>
+
+      {/* Order summary */}
+      <p className="text-sm text-gray-500 mb-4 text-center sm:text-left">
+        {Object.values(cartItems).length} items • ₦{totalPrice.toLocaleString()}
+      </p>
+
+      {/* Inputs */}
+      <div className="space-y-3">
+        <input
+          type="text"
+          placeholder="Your Name"
+          value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          className="w-full border p-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
         />
 
-        {/* Modal */}
-        <div className="relative bg-white dark:bg-dark rounded-2xl p-6 w-[90%] max-w-md shadow-2xl animate-fadeIn">
-          
-          <h2 className="text-xl font-bold mb-4">
-            Complete Your Order
-          </h2>
+        <input
+          type="text"
+          placeholder="Delivery Address"
+          value={form.address}
+          onChange={(e) => setForm({ ...form, address: e.target.value })}
+          className="w-full border p-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
 
-          <div className="space-y-3">
-            <input
-              type="text"
-              placeholder="Your Name"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full border p-3 rounded-xl"
-            />
+        <textarea
+          placeholder="Notes (optional)"
+          value={form.notes}
+          onChange={(e) => setForm({ ...form, notes: e.target.value })}
+          className="w-full border p-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
 
-            <input
-              type="text"
-              placeholder="Delivery Address"
-              value={form.address}
-              onChange={(e) => setForm({ ...form, address: e.target.value })}
-              className="w-full border p-3 rounded-xl"
-            />
-
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              className="w-full border p-3 rounded-xl"
-            />
-
-            <textarea
-              placeholder="Notes (optional)"
-              value={form.notes}
-              onChange={(e) => setForm({ ...form, notes: e.target.value })}
-              className="w-full h-48 border p-3 rounded-xl"
-            />
-          </div>
-
-          {/* Actions */}
-          <div className="mt-5 flex gap-3">
-            <button
-              onClick={() => setShowCheckout(false)}
-              className="w-full border py-3 rounded-xl"
-            >
-              Cancel
-            </button>
-
-            <button
-              onClick={() => {
-                if (!form.name || !form.address || !form.phone) {
-                  alert("Please fill all required fields");
-                  return;
-                }
-
-                const message = `
-    🍔 *QuickBite Order*
-
-    🧾 *Items:*
-    ${Object.values(cartItems)
-      .map((i) => `• ${i.name} × ${i.qty} = ₦${(i.price * i.qty).toLocaleString()}`)
-      .join("\n")}
-
-    💰 *Total:* ₦${totalPrice}
-
-    👤 *Name:* ${form.name}
-    📍 *Address:* ${form.address}
-
-    📝 *Notes:* ${form.notes || "None"}
-
-    Thank you!
-    `;
-
-                const url = `https://wa.me/2347043421913?text=${encodeURIComponent(message)}`;
-                window.open(url, "_blank");
-
-                setShowCheckout(false);
-              }}
-              className="w-full bg-green-500 text-white py-3 rounded-xl disabled:opacity-50"
-            >
-              Continue to WhatsApp
-            </button>
-          </div>
-        </div>
+        <p className="text-xs text-gray-500">
+          We’ll use your WhatsApp number to contact you about this order.
+        </p>
       </div>
-    )}
+
+      {/* Actions */}
+      <div className="mt-5 flex flex-col sm:flex-row gap-3">
+        <button
+          onClick={() => setShowCheckout(false)}
+          className="w-full border py-3 rounded-xl"
+        >
+          Cancel
+        </button>
+
+        <button
+          onClick={() => {
+            if (!form.name || !form.address) {
+              alert("Please fill all required fields");
+              return;
+            }
+
+            const message = `
+🍔 *QuickBite Order*
+
+🧾 *Items:*
+${Object.values(cartItems)
+  .map((i) => `• ${i.name} × ${i.qty} = ₦${(i.price * i.qty).toLocaleString()}`)
+  .join("\n")}
+
+💰 *Total:* ₦${totalPrice}
+
+👤 *Name:* ${form.name}
+📍 *Address:* ${form.address}
+
+📝 *Notes:* ${form.notes || "None"}
+
+Thank you!
+`;
+
+            const url = `https://wa.me/2347043421913?text=${encodeURIComponent(message)}`;
+            window.open(url, "_blank");
+
+            setShowCheckout(false);
+          }}
+          className="w-full bg-green-500 text-white py-3 rounded-xl disabled:opacity-50"
+        >
+          Continue to WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </>
   );
 };
