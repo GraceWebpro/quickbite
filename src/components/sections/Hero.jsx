@@ -75,25 +75,27 @@ const Hero = () => {
                 </p>
 
                 {/* CTA BUTTONS */}
-                <div className="flex flex-row flex-wrap gap-3 justify-center sm:justify-start">                    
+                <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                    
                     {/* PRIMARY CTA */}
                     <a
-                    href="https://wa.me/234XXXXXXXXXX?text=Hello%20QuickBite,%20I%20want%20to%20order"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className=" w-fit bg-primary text-white px-7 py-3.5 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 whitespace-nowrap"
+                        href="https://wa.me/2347043421913?text=Hello%20QuickBite,%20I%20want%20to%20order"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full sm:w-auto bg-primary text-white px-6 py-3.5 rounded-full font-semibold text-center shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300"
                     >
-                    Order on WhatsApp
+                        Order on WhatsApp
                     </a>
 
                     {/* SECONDARY CTA */}
                     <a
-                    href="#menu"
-                    className="bg-white border border-primary text-primary px-6 py-3 sm:px-5 sm:py-2 rounded-full font-semibold hover:bg-primary hover:text-white transition duration-300 whitespace-nowrap"
+                        href="#menu"
+                        className="w-full sm:w-auto bg-white border border-primary text-primary px-6 py-3 rounded-full font-semibold text-center hover:bg-primary hover:text-white transition duration-300"
                     >
-                    View Menu
+                        View Menu
                     </a>
-                </div>
+
+                    </div>
 
                 {/* MICRO TRUST TEXT */}
                 <p className="bg-white text-xs text-gray-500 dark:text-gray-400">
