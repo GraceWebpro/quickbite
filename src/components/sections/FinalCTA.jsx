@@ -52,7 +52,7 @@ const FinalCTA = () => {
               href="https://wa.me/2347043421913?text=Hello%20QuickBite,%20I%20want%20to%20order"
               target="_blank"
               rel="noreferrer"
-              className=" w-fit
+              className="
                 flex items-center justify-center gap-3
                 px-6 py-4 rounded-xl
                 text-white font-semibold

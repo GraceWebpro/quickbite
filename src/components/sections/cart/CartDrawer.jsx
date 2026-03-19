@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { useCart } from "../../../context/CartContext";
 import { FaPlus, FaMinus } from "react-icons/fa"
 import { flyToCart } from "../../../utils/flyToCart";
@@ -15,7 +16,35 @@ const CartDrawer = ({ isOpen, onClose }) => {
     totalPrice,
   } = useCart();
 
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    address: "",
+    notes: "",
+  });
+
   const navigate = useNavigate();
+
+  // const message = `
+  //   🍔 *QuickBite Order*
+
+  //   🧾 *Items:*
+  //   ${Object.values(cartItems)
+  //     .map((i) => `• ${i.name} × ${i.qty} = ${(i.price * i.qty).toLocaleString()}`)
+  //     .join("\n")}
+
+  //   💰 *Total:* ₦${totalPrice}
+
+  //   💰 *Total:* ₦${totalPrice}
+
+  //   👤 *Name:* ${name}
+  //   📍 *Address:* ${address}
+  //   📞 *Phone:* ${phone}
+
+  //   📝 *Notes:* ${notes || "None"}
+
+  //   Thank you!
+  // `;
 
   return (
     <>
@@ -100,7 +129,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
                   <button
                     onClick={(e) => {
                       flyToCart?.(e);
-                      addToCart(item.id);
+                      addToCart(item);
                     }}
                     className="hover:scale-110 transition"
                   >
@@ -168,20 +197,117 @@ const CartDrawer = ({ isOpen, onClose }) => {
 
             </div>
 
-            <a
-              href={`https://wa.me/2347043421913?text=${encodeURIComponent(
-                `Hello QuickBite, I want to order:\n\n${Object.values(cartItems)
-                  .map((i) => `${i.name} x${i.qty}`)
-                  .join("\n")}\n\nTotal: ₦${totalPrice}`
-              )}`}
-              target="_blank"
-              className="block bg-green-500 text-white text-center py-3 rounded-xl font-semibold hover:scale-105 transition"
+        
+            <div
+              onClick={() => setShowCheckout(true)}
+              className="block bg-green-500 text-white text-center py-3 rounded-xl font-semibold hover:scale-105 cursor-pointer transition"
             >
               Checkout via WhatsApp
-            </a>
+            </div>
+
+          <p className="text-center text-sm text-gray-500 mt-2">
+            You’ll confirm your details on WhatsApp before we process your order.
+          </p>
           </div>
         )}
       </div>
+
+      {showCheckout && (
+      <div className="fixed inset-0 z-[200] flex items-center justify-center">
+        
+        {/* Overlay */}
+        <div
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          onClick={() => setShowCheckout(false)}
+        />
+
+        {/* Modal */}
+        <div className="relative bg-white dark:bg-dark rounded-2xl p-6 w-[90%] max-w-md shadow-2xl animate-fadeIn">
+          
+          <h2 className="text-xl font-bold mb-4">
+            Complete Your Order
+          </h2>
+
+          <div className="space-y-3">
+            <input
+              type="text"
+              placeholder="Your Name"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              className="w-full border p-3 rounded-xl"
+            />
+
+            <input
+              type="text"
+              placeholder="Delivery Address"
+              value={form.address}
+              onChange={(e) => setForm({ ...form, address: e.target.value })}
+              className="w-full border p-3 rounded-xl"
+            />
+
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              value={form.phone}
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              className="w-full border p-3 rounded-xl"
+            />
+
+            <textarea
+              placeholder="Notes (optional)"
+              value={form.notes}
+              onChange={(e) => setForm({ ...form, notes: e.target.value })}
+              className="w-full h-48 border p-3 rounded-xl"
+            />
+          </div>
+
+          {/* Actions */}
+          <div className="mt-5 flex gap-3">
+            <button
+              onClick={() => setShowCheckout(false)}
+              className="w-full border py-3 rounded-xl"
+            >
+              Cancel
+            </button>
+
+            <button
+              onClick={() => {
+                if (!form.name || !form.address || !form.phone) {
+                  alert("Please fill all required fields");
+                  return;
+                }
+
+                const message = `
+    🍔 *QuickBite Order*
+
+    🧾 *Items:*
+    ${Object.values(cartItems)
+      .map((i) => `• ${i.name} × ${i.qty} = ₦${(i.price * i.qty).toLocaleString()}`)
+      .join("\n")}
+
+    💰 *Total:* ₦${totalPrice}
+
+    👤 *Name:* ${form.name}
+    📍 *Address:* ${form.address}
+
+    📝 *Notes:* ${form.notes || "None"}
+
+    Thank you!
+    `;
+
+                const url = `https://wa.me/2347043421913?text=${encodeURIComponent(message)}`;
+                window.open(url, "_blank");
+
+                setShowCheckout(false);
+              }}
+              className="w-full bg-green-500 text-white py-3 rounded-xl disabled:opacity-50"
+            >
+              Continue to WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
     </>
   );
 };
