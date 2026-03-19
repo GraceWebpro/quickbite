@@ -75,8 +75,7 @@ const Hero = () => {
                 </p>
 
                 {/* CTA BUTTONS */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
-                    
+                <div className="flex flex-row flex-wrap gap-3 justify-center sm:justify-start">                    
                     {/* PRIMARY CTA */}
                     <a
                     href="https://wa.me/234XXXXXXXXXX?text=Hello%20QuickBite,%20I%20want%20to%20order"
@@ -90,7 +89,7 @@ const Hero = () => {
                     {/* SECONDARY CTA */}
                     <a
                     href="#menu"
-                    className="bg-white border border-primary text-primary px-6 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition duration-300 whitespace-nowrap"
+                    className="bg-white border border-primary text-primary px-6 py-3 sm:px-5 sm:py-2 rounded-full font-semibold hover:bg-primary hover:text-white transition duration-300 whitespace-nowrap"
                     >
                     View Menu
                     </a>
